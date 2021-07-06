@@ -5,6 +5,7 @@
  */
 package cinema;
 
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -41,7 +42,6 @@ public class cinema2 extends javax.swing.JFrame {
         jvpoltrona = new javax.swing.JTextField();
         jcadastro = new javax.swing.JButton();
         jvexcluir = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jvtabela = new javax.swing.JTable();
@@ -77,8 +77,6 @@ public class cinema2 extends javax.swing.JFrame {
                 jvexcluirActionPerformed(evt);
             }
         });
-
-        jButton3.setText("Atualizar ");
 
         jvtabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -137,26 +135,21 @@ public class cinema2 extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jvpreco, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jvexcluir)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                                 .addComponent(jLabel5)
-                                .addGap(33, 33, 33)))
+                                .addGap(33, 33, 33))
+                            .addComponent(jvexcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jvhorario, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jvhorario, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addGap(24, 24, 24)
-                                        .addComponent(jLabel6)))
-                                .addGap(40, 40, 40)
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jvpoltrona, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                        .addComponent(jLabel7)
-                                        .addGap(29, 29, 29))))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGap(4, 4, 4)
-                                .addComponent(jButton3)))
+                                .addGap(24, 24, 24)
+                                .addComponent(jLabel6)))
+                        .addGap(40, 40, 40)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jvpoltrona, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addGap(29, 29, 29)))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addContainerGap()
@@ -181,8 +174,7 @@ public class cinema2 extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jcadastro)
-                    .addComponent(jvexcluir)
-                    .addComponent(jButton3))
+                    .addComponent(jvexcluir))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -227,17 +219,26 @@ public class cinema2 extends javax.swing.JFrame {
 
     private void jcadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcadastroActionPerformed
         // TODO add your handling code here:
-        DefaultTableModel jvcadastro = (DefaultTableModel) jvtabela.getModel();
+        DefaultTableModel jcadastro = (DefaultTableModel) jvtabela.getModel();
         Object[] dados = {jvdescricao.getText(), jvpreco.getText(),jvhorario.getText(), jvpoltrona.getText()};
-        jvcadastro.addRow(dados);
+        jcadastro.addRow(dados);
     }//GEN-LAST:event_jcadastroActionPerformed
 
     private void jvexcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jvexcluirActionPerformed
         // TODO add your handling code here:
-        DefaultTableModel jvexcluir  = (DefaultTableModel) jvtabela.getModel();
-        jvexcluir.rowsRemoved((jvtabela.getSelectedRow()));
+        //DefaultTableModel jvexcluir  = (DefaultTableModel) jvtabela.getModel();
+        //jvtabela.removeAll();
         
+        DefaultTableModel dtm = (DefaultTableModel)jvtabela.getModel();
+   
+        if (jvtabela.getSelectedRow() >= 0){
+            dtm.removeRow(jvtabela.getSelectedRow());
+            jvtabela.setModel(dtm);
         
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Favor selecionar uma linha");
+        }
     }//GEN-LAST:event_jvexcluirActionPerformed
 
     /**
@@ -276,7 +277,6 @@ public class cinema2 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;

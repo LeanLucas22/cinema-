@@ -1,21 +1,20 @@
 package cinema.model;
 
-import java.time.LocalTime;
 import java.util.Objects;
 
 public final class Ingresso {
 	private Integer codigo;
-	private Filme filme;
+	private String filme;
 	private Double preco;
-	private LocalTime horario;
+	private String horario;
     
 	public Ingresso(){}
 
-	public Ingresso(Integer codigo, Filme filme, Double preco, String horario) {
+	public Ingresso(Integer codigo, String filme, Double preco, String horario) {
 		this.codigo = codigo;
 		this.filme = filme;
 		this.preco = preco;
-		this.setHorario(horario);
+		this.horario = horario;
 	}
 
 	@Override
@@ -63,11 +62,11 @@ public final class Ingresso {
 		this.codigo = codigo;
 	}
 
-	public Filme getFilme() {
+	public String getFilme() {
 		return filme;
 	}
 
-	public void setFilme(Filme filme) {
+	public void setFilme(String filme) {
 		this.filme = filme;
 	}
 
@@ -79,12 +78,12 @@ public final class Ingresso {
 		this.preco = preco;
 	}
 
-	public LocalTime getHorario() {
+	public String getHorario() {
 		return horario;
 	}
 
 	public void setHorario(String horario) {
-		this.horario = LocalTime.parse(horario);
+		this.horario = horario;
 	}
 
 	@Override
